@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    props:["ModalMessage"],
+    props:["modalMessage"],
     methods: {
         closeModal(){
             this.$emit("close-modal")

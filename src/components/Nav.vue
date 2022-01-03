@@ -9,7 +9,7 @@
                     <router-link class="link" :to="{name:'Home'}">Home</router-link>
                     <router-link class="link" :to="{name: 'Blogs'}">Blogs</router-link>
                     <router-link class="link" to="#">Create Posts</router-link>
-                    <router-link class="link" to="#">Login/Register</router-link>
+                    <router-link class="link" :to="{name: 'Login'}">Login/Register</router-link>
                 </ul>
             </div>
         </nav>
@@ -19,7 +19,7 @@
                     <router-link class="link" :to="{name:'Home'}">Home</router-link>
                     <router-link class="link" :to="{name: 'Blogs'}">Blogs</router-link>
                     <router-link class="link" to="#">Create Posts</router-link>
-                    <router-link class="link" to="#">Login/Register</router-link>
+                    <router-link class="link" :to="{name: 'Login'}">Login/Register</router-link>
                 </ul>
         </transition>
     </header>
@@ -31,7 +31,7 @@ import menuIcon from '../assets/Icons/bars-regular.svg'
 export default {
     name: 'navigation',
     components : {
-        menuIcon
+        menuIcon, 
     },
     data() {
         return {
