@@ -30,7 +30,7 @@
 </template>
 
 <script>
-// import BlogCoverPreview from "../components/BlogCoverPreview";
+import BlogCoverPreview from "../components/BlogCoverPreview";
 import Loading from "../components/Loading";
 import firebase from "firebase/app";
 import "firebase/storage";
@@ -55,7 +55,7 @@ export default {
     };
   },
   components: {
-    // BlogCoverPreview,
+    BlogCoverPreview,
     Loading,
   },
   methods: {
