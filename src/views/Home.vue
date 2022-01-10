@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <BlogPost v-if="!user" :post="welcomeScreen" />
-    <BlogPost :post="post" v-for="(post,index) in sampleBlogPost" :key="index" />
+    <BlogPost :post="post" v-for="(post,index) in blogPostsFeed" :key="index" />
     <div class="blog-card-wrap">
       <div class="container">
         <h3>View More Recent Blog</h3>
@@ -37,18 +37,7 @@ export default {
         welcomeScreen: true,
         photo:"coding",
       },
-      sampleBlogPost:[
-        {
-          title: "This is a Filler Title",
-          blogHTML: "This is a blog post title!",
-          blogCoverPhoto:"beautiful-stories",
-        },
-        {
-          title: "This is a Filler Title",
-          blogHTML: "This is a blog post title!",
-          blogCoverPhoto:"designed-for-everyone",
-        },
-      ],
+   
       // sampleBlogCards:[
       //   {blogTitle: "Blog Card #1", blogCoverPhoto: "stock-1", blogDate:"May 1, 2021"},
       //   {blogTitle: "Blog Card #2", blogCoverPhoto: "stock-2", blogDate:"May 1, 2021"},
@@ -58,8 +47,11 @@ export default {
     }
   },
       computed:{
-        sampleBlogCards() {
-           return this.$store.state.sampleBlogCards
+        blogPostsFeed() {
+           return this.$store.getters.blogPostsFeed;
+        },
+        blogPostsCards() {
+           return this.$store.getters.blogPostsCards;
         },
         user() {
             return this.$store.state.user;
