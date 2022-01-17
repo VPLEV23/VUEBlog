@@ -8,12 +8,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    sampleBlogCards:[
-      {blogTitle: "Blog Card #1", blogCoverPhoto: "stock-1", blogDate:"May 1, 2021"},
-      {blogTitle: "Blog Card #2", blogCoverPhoto: "stock-2", blogDate:"May 1, 2021"},
-      {blogTitle: "Blog Card #3", blogCoverPhoto: "stock-3", blogDate:"May 1, 2021"},
-      {blogTitle: "Blog Card #4", blogCoverPhoto: "stock-4", blogDate:"May 1, 2021"},
-    ],
     blogHTML: "Write your blog title here.......",
     blogPosts: [],
     postLoaded: null,
@@ -42,11 +36,11 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    updateBlogTitle(state, payload) {
-      state.blogTitle = payload;
-    },
     newBlogPost(state, payload) {
       state.blogHTML = payload;
+    },
+    updateBlogTitle(state, payload) {
+      state.blogTitle = payload;
     },
     fileNameChange(state, payload) {
       state.blogPhotoName = payload;
@@ -57,9 +51,17 @@ export default new Vuex.Store({
     openPhotoPreview(state) {
       state.blogPhotoPreview = !state.blogPhotoPreview;
     },
-    toggleEditPost(state, payload){
+    toggleEditPost(state, payload) {
       state.editPost = payload;
-      console.log(state.editPost)
+    },
+    setBlogState(state, payload) {
+      state.blogTitle = payload.blogTitle;
+      state.blogHTML = payload.blogHTML;
+      state.blogPhotoFileURL = payload.blogCoverPhoto;
+      state.blogPhotoName = payload.blogCoverPhotoName;
+    },
+    filterBlogPost(state, payload) {
+      state.blogPosts = state.blogPosts.filter((post) => post.blogID !== payload);
     },
     updateUser(state, payload){
       state.user = payload;
@@ -118,6 +120,16 @@ export default new Vuex.Store({
         }
       });
       state.postLoaded = true;
+    },
+
+    async updatePost({ commit, dispatch }, payload) {
+      commit("filterBlogPost", payload);
+      await dispatch("getPost");
+    },
+    async deletePost({ commit }, payload) {
+      const getPost = await db.collection("blogPosts").doc(payload);
+      await getPost.delete();
+      commit("filterBlogPost", payload);
     },
 
     async updateUserSettings({commit, state}) {

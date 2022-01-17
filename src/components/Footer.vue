@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="right">
-                <p>Copyright 2022 All Rights Reserved</p>
+                <p>Copyright 2022 All Rights Reserved by Vlad Bulgakov</p>
             </div>
         </div>
     </footer>
